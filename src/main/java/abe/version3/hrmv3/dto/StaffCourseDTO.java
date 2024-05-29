@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 public class StaffCourseDTO {
     private Integer staffId;
     private Integer courseId;
+    private String courseName; // Add this line
+
 
     private String commentByOcs;
 

@@ -50,6 +50,37 @@ public enum Role {
                     OCS_CREATE
 
             )
+    ),
+
+    OCD(
+            Set.of(
+
+                    OCS_READ,
+                    OCS_UPDATE,
+                    OCS_DELETE,
+                    OCS_CREATE
+
+            )
+    ),
+    RPC(
+            Set.of(
+
+                    OCS_READ,
+                    OCS_UPDATE,
+                    OCS_DELETE,
+                    OCS_CREATE
+
+            )
+    ),
+    COM(
+            Set.of(
+
+                    OCS_READ,
+                    OCS_UPDATE,
+                    OCS_DELETE,
+                    OCS_CREATE
+
+            )
     )
     ;
 

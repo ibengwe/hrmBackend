@@ -1,10 +1,10 @@
 package abe.version3.hrmv3.controller;
 
 import abe.version3.hrmv3.dto.StaffDto;
-import abe.version3.hrmv3.entity.Gender;
 import abe.version3.hrmv3.entity.Staff;
 import abe.version3.hrmv3.service.StaffService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,22 +24,13 @@ public class StaffController {
             @RequestParam("firstName") String firstName,
             @RequestParam("middleName") String middleName,
             @RequestParam("lastName") String lastName,
-            @RequestParam("dateBirth") Date dateBirth,
-            @RequestParam("dateEnlist") Date dateEnlist,
+            @RequestParam("dateBirth")@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  Date dateBirth,
+            @RequestParam("dateEnlist")@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  Date dateEnlist,
             @RequestParam("gender") String gender,
             @RequestParam("phoneNumber") String phoneNumber,
             @RequestParam("image") MultipartFile image)throws IOException {
-        Staff staff=new Staff();
-        staff.setStaffId(staffId);
-        staff.setFirstName(firstName);
-        staff.setMiddleName(middleName);
-        staff.setLastName(lastName);
-        staff.setDateBirth(dateBirth);
-        staff.setDateEnlist(dateEnlist);
-        staff.setGender(gender);
-        staff.setPhoneNumber(phoneNumber);
-        staff.setImage(image.getBytes());
-        return service.createStaff(staff);
+//
+        return service.createStaff(staffId,firstName,middleName,lastName,dateBirth,dateEnlist,gender,phoneNumber,image);
 
     }
 

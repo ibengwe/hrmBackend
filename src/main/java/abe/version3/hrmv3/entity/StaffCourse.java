@@ -45,5 +45,24 @@ public class StaffCourse {
     @Column(length = 900000000)
     public byte[] certificate;
 
+    @PrePersist
+    protected void onPrePersist() {
+        if (this.commentByOcs == null) {
+            this.commentByOcs = "pending";
+        }
+        if (this.commentByOcd == null) {
+            this.commentByOcd = "pending";
+        }
+        if (this.commentByRpc == null) {
+            this.commentByRpc = "pending";
+        }
+        if (this.commentByCommissioner == null) {
+            this.commentByCommissioner = "pending";
+        }
+        if (this.status == null) {
+            this.status = "pending";
+        }
+    }
+
 
 }

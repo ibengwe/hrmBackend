@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/admin/course")
+@RequestMapping("api/v1/auth/course")
 @RequiredArgsConstructor
 public class CourseController {
     private final CourseService service;

@@ -1,5 +1,6 @@
 package abe.version3.hrmv3.service;
 
+import abe.version3.hrmv3.dto.CourseDto;
 import abe.version3.hrmv3.dto.StaffCourseDTO;
 import abe.version3.hrmv3.entity.Course;
 import abe.version3.hrmv3.entity.Staff;
@@ -25,6 +26,35 @@ public class StaffCourseService {
 
     public List<StaffCourseDTO> getAllStaffCourses() {
         List<StaffCourse> staffCourses = staffCourseRepository.findAll();
+        return staffCourses.stream()
+                .map(this::mapToStaffCourseDTO)
+                .collect(Collectors.toList());
+    }
+
+    public List<CourseDto> getCoursesByStaffId(Integer staffId) {
+        List<StaffCourse> staffCourses = staffCourseRepository.findByStaff_StaffId(staffId);
+        return staffCourses.stream()
+                .map(staffCourse -> mapToCourseDTO(staffCourse.getCourse()))
+                .collect(Collectors.toList());
+    }
+
+    private CourseDto mapToCourseDTO(Course course) {
+        return new CourseDto(
+                course.getCourseId(),
+                course.getCourseName()
+                // add other fields as necessary
+        );
+    }
+
+    public List<StaffCourseDTO> getStaffCoursesByStaffId(Integer staffId) {
+        List<StaffCourse> staffCourses = staffCourseRepository.findByStaff_StaffId(staffId);
+        return staffCourses.stream()
+                .map(this::mapToStaffCourseDTO)
+                .collect(Collectors.toList());
+    }
+
+    public List<StaffCourseDTO> getStaffCoursesByStatus(String status) {
+        List<StaffCourse> staffCourses = staffCourseRepository.findByStatus(status);
         return staffCourses.stream()
                 .map(this::mapToStaffCourseDTO)
                 .collect(Collectors.toList());
@@ -70,6 +100,8 @@ public class StaffCourseService {
         return new StaffCourseDTO(
                 staffCourse.getId().getStaffId(),
                 staffCourse.getId().getCourseId(),
+                staffCourse.course.getCourseName(), // Add this line
+
                 staffCourse.getCommentByOcs(),
                 staffCourse.getCommentByOcd(),
                 staffCourse.getCommentByRpc(),

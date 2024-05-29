@@ -1,5 +1,6 @@
 package abe.version3.hrmv3.controller;
 
+import abe.version3.hrmv3.dto.CourseDto;
 import abe.version3.hrmv3.dto.StaffCourseDTO;
 import abe.version3.hrmv3.entity.StaffCourse;
 import abe.version3.hrmv3.service.StaffCourseService;
@@ -40,6 +41,41 @@ public class StaffCourseController {
     @GetMapping("/{staffId}/{courseId}")
     public StaffCourseDTO getStaffCourseById(@PathVariable Integer staffId, @PathVariable Integer courseId) {
         return service.getStaffCourseById(staffId, courseId);
+    }
+
+    @GetMapping("/courses/{staffId}")
+    public List<CourseDto> getCoursesByStaffId(@PathVariable Integer staffId) {
+        return service.getCoursesByStaffId(staffId);
+    }
+
+    @GetMapping("/staff/{staffId}")
+    public List<StaffCourseDTO> getStaffCoursesByStaffId(@PathVariable Integer staffId) {
+        return service.getStaffCoursesByStaffId(staffId);
+    }
+
+    @GetMapping("/status/pending")
+    public List<StaffCourseDTO> getAllPendingStaffCourses() {
+        return service.getStaffCoursesByStatus("pending");
+    }
+
+    @GetMapping("/status/ocs")
+    public List<StaffCourseDTO> getAllOcsStaffCourses() {
+        return service.getStaffCoursesByStatus("ocs");
+    }
+
+    @GetMapping("/status/ocd")
+    public List<StaffCourseDTO> getAllOcdStaffCourses() {
+        return service.getStaffCoursesByStatus("ocd");
+    }
+
+    @GetMapping("/status/rpc")
+    public List<StaffCourseDTO> getAllRpcStaffCourses() {
+        return service.getStaffCoursesByStatus("rpc");
+    }
+
+    @GetMapping("/status/commissioner")
+    public List<StaffCourseDTO> getAllCommissionerStaffCourses() {
+        return service.getStaffCoursesByStatus("commissioner");
     }
 
     @DeleteMapping("/{staffId}/{courseId}")
